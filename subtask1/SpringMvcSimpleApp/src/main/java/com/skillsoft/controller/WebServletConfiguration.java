@@ -1,0 +1,38 @@
+package com.skillsoft.controller;
+
+import javax.servlet.ServletContext;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
+
+public class WebServletConfiguration implements WebApplicationInitializer{
+	
+
+	public void onStartup(ServletContext ctx)throws ServletException{
+		
+//		AnnotationConfigWebApplicationContext appContext=new AnnotationConfigWebApplicationContext();
+//		appContext.register(ApplicationContextConfiguration.class);
+//		
+//		ServletRegistration.Dynamic servlet=ctx.addServlet("dispatcher",new DispatcherServlet(appContext));
+		
+		
+		
+		
+		/*2nd project*/
+		
+		
+		XmlWebApplicationContext appContext=new XmlWebApplicationContext();
+		appContext.setConfigLocation("/WEB-INF/application-context.xml");
+		
+		ServletRegistration.Dynamic servlet=ctx.addServlet("dispatcher", new DispatcherServlet(appContext));
+		
+		servlet.setLoadOnStartup(1);
+		servlet.addMapping("/");
+	}
+
+}
